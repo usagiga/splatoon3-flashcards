@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { FC } from 'react';
 import './App.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Weapons from './models/Weapons';
+import WeaponCard from './components/WeaponCard';
 
-function App() {
+const App: FC = () => {
+  const weapons = Weapons;
+  const randomWeaponIndex = Math.floor(Math.random() * weapons.length);
+  const randomWeapon = weapons[randomWeaponIndex];
+
   return (
-    <div className="app">
-      <header className="appHeader">
-        <img src={logo} className="appLogo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="appLink"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={<Navigate to={'/' + randomWeapon.slug} replace={true} />}
+      />
+      {weapons.map((weapon) => (
+        <Route
+          path={'/' + weapon.slug}
+          element={<WeaponCard weapon={weapon} />}
+        />
+      ))}
+    </Routes>
   );
-}
+};
 
 export default App;
