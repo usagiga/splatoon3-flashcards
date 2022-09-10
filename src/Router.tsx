@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import WeaponCard from './components/WeaponCard';
 import WeaponSetRepository from './repositories/WeaponSetRepository';
+import WeaponView from './views/Weapon';
 
 type RouterProps = {
   weaponSetRepository: WeaponSetRepository;
@@ -21,7 +21,7 @@ const Router: FC<RouterProps> = (props) => {
       {weapons.map((weapon) => (
         <Route
           path={'/' + weapon.slug}
-          element={<WeaponCard weapon={weapon} />}
+          element={<WeaponView weapon={weapon} />}
         />
       ))}
     </Routes>
