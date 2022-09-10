@@ -4,14 +4,20 @@ import './index.scss';
 import Router from './Router';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import LocalWeaponSetRepository from './repositories/WeaponSetRepository/LocalWeaponSetRepository';
+import WeaponSetRepository from './repositories/WeaponSetRepository';
 
+// Define repositories
+const weaponSetRepository: WeaponSetRepository = new LocalWeaponSetRepository();
+
+// Define root
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Router />
+      <Router weaponSetRepository={weaponSetRepository} />
     </BrowserRouter>
   </React.StrictMode>,
 );

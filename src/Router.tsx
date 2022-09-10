@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Weapons from './models/Weapons';
 import WeaponCard from './components/WeaponCard';
+import WeaponSetRepository from './repositories/WeaponSetRepository';
 
-const Router: FC = () => {
-  const weapons = Weapons;
+type RouterProps = {
+  weaponSetRepository: WeaponSetRepository;
+};
+
+const Router: FC<RouterProps> = (props) => {
+  const weapons = props.weaponSetRepository.Get();
   const randomWeaponIndex = Math.floor(Math.random() * weapons.length);
   const randomWeapon = weapons[randomWeaponIndex];
 
