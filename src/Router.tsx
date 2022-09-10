@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Weapons from './models/Weapons';
 import WeaponCard from './components/WeaponCard';
 
-const App: FC = () => {
+const Router: FC = () => {
   const weapons = Weapons;
   const randomWeaponIndex = Math.floor(Math.random() * weapons.length);
   const randomWeapon = weapons[randomWeaponIndex];
@@ -25,4 +24,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default Router;
